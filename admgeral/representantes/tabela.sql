@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS `representantes` (
+  `codigo` int(11) NOT NULL auto_increment,
+  `nome` varchar(50) NOT NULL default '',
+  `endereco` varchar(50) NOT NULL default '',
+  `numero` varchar(50) NOT NULL default '',
+  `bairro` varchar(50) NOT NULL default '',
+  `cidade` varchar(50) NOT NULL default '',
+  `estado` text(50) NOT NULL default '',
+  `cep` varchar(50) default NULL,
+  `cpf` varchar(50) default NULL,
+  `rg` varchar(50) default NULL,
+  `fone` varchar(50) default NULL,
+  `fax` varchar(50) default NULL,
+  `celular` varchar(50) default NULL,
+  `email` varchar(50) default NULL,
+  `usuario` varchar(50) default NULL,
+  `senha` varchar(50) default NULL,
+  `obs` varchar(255) default NULL,
+  `foto` varchar(50) default NULL,
+  PRIMARY KEY  (`codigo`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;

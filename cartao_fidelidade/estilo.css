@@ -1,0 +1,16 @@
+#picture{/* id de estilo css no codigo html*/
+float. left; /*comando float flutuante */
+margin-left: 20px; /* alinha o texto a 100 pixels da mnargem esquerda */
+width: 450px; /* largura da caixa da imagem */
+height: 278px; /*altura da caixa da imagem */
+border: 0px solid black; /*borda em colta da imagem */
+}
+
+h2{ /* estilo para o paragrafo h2 */
+/*<div style='position:absolute; top:-150px; left:100px;'>*/
+position: absolute;
+text-align: left; /* alinhar texto encostado a margem esquerda */
+margin-top: -150px; /* alinhar texto a 10 pixels da margem superior */
+margin-left: 100px; /* alinha o texto a 100 pixels da mnargem esquerda */
+margin-right: 100px; /* alinha o texto a 100 pixels da mnargem direita */
+}

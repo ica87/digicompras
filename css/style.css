@@ -1,0 +1,30 @@
+.class01 {
+	background-color: #aaa; 
+	border-radius: 8px; 
+	border: 3px solid #aaa; 
+	color: #FFF; 
+	cursor: pointer; 
+	padding: 8px;
+}
+.class02 {
+	font-size: 20px;
+	font-family: "Times New Roman", Arial, Verdana;
+	
+}
+.class02:hover{
+	text-decoration: underline;
+}
+.class01:hover {
+	background-color: #ccc;
+}
+
+#div01 {
+	color: #000;
+	font-size: 40px;
+	font-weight: bold;
+	height: 100px;
+	position: absolute;
+	top: 40px;
+	left: 50px;
+	width: 100px;
+}

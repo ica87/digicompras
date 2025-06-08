@@ -1,0 +1,101 @@
+A impressão de etiquetas é muito utilizada ainda hoje para envio de mala-direta e correspondências em geral. Por tanto é bem provável que você se deparará com a situação de ter que gerar as etiquetas e deixá-las funcionando no seu cliente.
+
+Foi pensando nisso e por já ter passado por esta situação, que hoje escreve este texto, tanto para que sirva de consulta para que nunca fez ou para que já fez mas acabou esquecendo. ;-)
+
+Para a geração de etiquetas padrão pimaco utilizaremos a biblioteca FPDF que pode ser encontrada no link: www.fpdf.org
+
+Aqui iremos supor que você já tenha criado a conexão com o banco de dados e que estaremos fazendo uma consulta simples numa tabela de clientes.
+
+Segue o código:
+
+<?php
+
+//aqui fazemos a inclusão da biblioteca FPDF
+require_once(“../Componentes/PDF/fpdf.php”);
+
+// Variaveis de Tamanho
+$mesq = “10?; // Margem Esquerda (mm)
+$msup = “2?; // Margem Superior (mm) margem mínima dois pois ficou cortando
+$leti = “90?; // Largura da Etiqueta (mm)
+$aeti = “25,99?; // Altura da Etiqueta (mm)
+/*Uma dica: estes tamanhos você pode verificar com uma régua ou na própria caixa da etiqueta, seja bem preciso e sugiro que faça o teste na impressora que vai ser utilizada, pois pode acontecer de na impressão começar a subir ou descer, portanto, você deverá aumentar ou diminuir a altura da etiqueta.
+
+Outra coisa muito importante é o tamanho do papel, que deve ser bem preciso. Caso necessário, configure um papel próprio.
+
+*/
+$pdf=new FPDF(‘P’,'mm’, array(200, 310)); //papel personalizado
+$pdf->Open();
+$pdf->AddPage();
+$pdf->SetMargins(0, 2); //seta as margens do documento
+$pdf->SetAuthor(“Noaldo Filho”);
+$pdf->SetFont(‘Arial’,”, 7);
+$pdf->SetDisplayMode(100, ‘continuous’); //define o nivel de zoom do documento PDF
+
+$coluna = 0;
+$linha = 0;
+$posicaoH = 0;
+$posicaoV = 0;
+
+while($dados = mysql_fetch_array($RS_Clientes)) {
+$nome = strtoupper(substr($dados["NomeCliente"], 0, 45));
+$ende = strtoupper(substr($dados["Endereco"], 0, 45));
+$bairro = strtoupper($dados["Bairro"]);
+$estado = strtoupper($dados["UF"]);
+$cida = strtoupper($dados["Cidade"]);
+$local = $bairro . ” – ” . $cida . ” – ” . $estado;
+$cep = “CEP: ” . $dados["CEP"];
+
+//Para etiqueta com 12 por página
+if($linha == “12?) {
+$pdf->AddPage();
+$linha = 0;
+}
+
+if($coluna == “2?) { // Se for a segunda coluna
+$coluna = 0; // $coluna volta para o valor inicial
+$linha++;
+}
+
+if($linha == “12?) { // Se for a última linha da página
+$pdf->AddPage(); // Adiciona uma nova página
+$linha = 0; // $linha volta ao seu valor inicial
+}
+
+$posicaoV = $linha*$aeti;
+$posicaoH = $coluna*$leti;
+
+if($coluna == “0?) { // Se a coluna for 0
+$somaH = $mesq; // Soma Horizontal recebe a margem da esquerda inicial
+} else {
+$somaH = $mesq+$posicaoH; // Soma Horizontal recebe a margem inicial mais a posiçãoH
+}
+
+if($linha == “0?) { // Se a linha for 0
+$somaV = $msup; // Soma Vertical é apenas a margem superior inicial
+} else {
+$somaV = $msup+$posicaoV; // Soma Vertical é a margem superior inicial mais a posição
+}
+
+$pdf->Text($somaH,$somaV,$nome);
+$pdf->Text($somaH,$somaV+4,$ende);
+$pdf->Text($somaH,$somaV+8,$local);
+$pdf->Text($somaH,$somaV+12,$cep);
+
+$coluna++;
+
+unset($posicaoH);
+unset($posicaoV);
+unset($somaH);
+unset($somaV);
+
+}
+
+$pdf->Output(); //imprime a saida
+
+?>
+
+Pronto, finalizamos o script de geração de etiquetas.
+
+Preste bem atenção nas dicas que dei acima pois serão muito úteis.
+
+Até a próxima!
