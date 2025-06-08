@@ -79,7 +79,7 @@ background="background/<? printf("$linha[1]"); ?>" bgproperties="fixed">
 <p align="center" class="style2 style1"><strong>ATEN&Ccedil;&Atilde;O PARA POSSIVEIS INCONSISTENCIAS!!</strong></p>
 
 <p align="center" class="style1 style2"><strong>* USUARIO E/OU SENHA INCORRETOS</strong>!</p>
-<p align="center" class="style1 style2"><strong>*VOC&Ecirc; AINDA N&Atilde;O POSSUI O CADASTRO ATIVO DA EMPRESA NO SISTEMA!</strong></p>
+<p align="center" class="style1 style2"><strong>*VOC&Ecirc; AINDA N&Atilde;O POSSUI O CADASTRO ATIVO DA EMPRESA NO SISTEMA!</strong>!!...</p>
 
 <table width="100%" border="0">
   <tbody>
